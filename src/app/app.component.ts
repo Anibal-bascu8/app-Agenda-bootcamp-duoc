@@ -17,24 +17,6 @@ export class AppComponent {
       routerLink: ['/home'],
       descripcion: 'Pagina de Inicio'
     },
-    {
-      label: 'Administracion',
-      icon: 'pi pi-car mr-2',
-      routerLink: ['/faenas'],
-      descripcion: 'Administracion de faenas'
-    },
-    {
-      label: 'Acceso trabajadores',
-      icon: 'pi pi-car mr-2',
-      routerLink: ['/trabajadores'],
-      descripcion: 'Registro de informes en Faenas'
-    },
-    {
-      label: 'Configuracion',
-      icon: 'pi pi pi-cog mr-2',
-      routerLink: ['/configuracion'],
-      descripcion: 'Configuracion del sistema'
-    },
     // {
     //   label: 'Login',
     //   icon: 'pi pi pi-cog mr-2',

@@ -9,6 +9,7 @@ import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../interfaces/usuario';
 import { catchError, map, Observable, of, tap } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 
 interface Auth {
@@ -30,7 +31,8 @@ export class AuthService {
     private api: ApiService,
     private router: Router,
     private jwtHelper: JwtHelperService,
-    private http: HttpClient
+    private http: HttpClient,
+    private messageService: MessageService
   ) {
 
   }
@@ -55,7 +57,14 @@ export class AuthService {
 
           localStorage.setItem('usuario', JSON.stringify(r.data))
           this.router.navigate(['home'])
+
+          
+          this.messageService.add({ severity: 'success', summary: 'Sesion Iniciada', detail: 'sesion iniciada correctamente' });
         } else {
+          
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: r.data });
+
+
         }
       })
   }

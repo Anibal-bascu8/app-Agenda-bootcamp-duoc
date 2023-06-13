@@ -15,16 +15,18 @@ export class LoginComponent {
 
   }
 
-  rut: string = ''
+  email: string = ''
   contrasena: string = ''
 
   sendLogin() {
 
     const data = {
-      "rut": this.rut,
+      "email": this.email,
       "contrasena": this.contrasena
     }
 
     this.apiAuth.login(data)
+
+    
   }
 }
