@@ -14,5 +14,11 @@ export class HomeComponent {
 
   }
 
+  visible: boolean
+
+
+  mostrarModal(){
+    this.visible = true
+  }
 }
 

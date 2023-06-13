@@ -15,7 +15,7 @@ const routes: Routes = [
       title: 'Inicio',
       expectedRole: ['admin', 'user']
     },
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
