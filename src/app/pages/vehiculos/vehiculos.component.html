@@ -1,0 +1,99 @@
+<div class="surface-card p-4 shadow-2 border-round">
+    <p-fieldset>
+        <ng-template pTemplate="header">
+            <div class="flex align-items-center text-primary">
+                <span class="pi pi-folder-open mr-2"></span>
+                <span class="font-bold text-lg">Registro de Vehiculos</span>
+            </div>
+        </ng-template>
+        
+        <div class="flex justify-content-between flex-wrap mb-2">
+            <h1>Historial de Vehiculos</h1>
+            <p-button (click)="showDialog()" icon="pi pi-external-link" label="Crear Nuevo"></p-button>
+        </div>
+
+        <p-table responsiveLayout="stack" scrollHeight="flex" [value]="vehiculos">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Patente</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Acciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData="rowData" let-product sortMode="multiple">
+                <tr>
+                    <td>{{ product.patente }}</td>
+                    <td>{{ product.marca }}</td>
+                    <td>{{ product.modelo }}</td>
+                    <td>{{ product.ano }}</td>
+                    <td>
+                        <p-button (click)="showDialog(product)" icon="pi pi-external-link" label="Editar"></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-fieldset>
+</div>
+
+
+<div class="card flex justify-content-center">
+    <p-dialog header="Formulario de vehiculos" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" class="surface-section md:px-6 lg:px-8" (onHide)="limpiar()">
+
+        <div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+            <div class="grid">
+                <div class="col-12">
+                    <div class="text-900 font-medium text-xl mb-3">Vehiculos</div>
+                    <p class="m-0 p-0 text-600 line-height-3 mr-3">Administre su flota de vehículos de manera eficiente.
+                        Edite los vehículos existentes y agregue nuevos con información clave como marca, modelo, año y
+                        matrícula.</p>
+                </div>
+                <div class="col-12">
+                    <form [formGroup]="vehiculoForm" class="grid formgrid p-fluid">
+                        <div class="field mb-4 col-12 md:col-6">
+                            <label for="patente" class="font-medium text-900">Patente</label>
+                            <input id="patente" type="text" pInputText required formControlName="patente">
+                            <small class="p-error ng-star-inserted"
+                                *ngIf="vehiculoForm.get('patente').invalid && vehiculoForm.get('patente').touched">
+                                Patente es requerido
+                            </small>
+                        </div>
+                        <div class="field mb-4 col-12 md:col-6">
+                            <label for="marca" class="font-medium text-900">Marca</label>
+                            <input id="marca" type="text" pInputText formControlName="marca">
+
+                            <small class="p-error ng-star-inserted"
+                                *ngIf="vehiculoForm.get('marca').invalid && vehiculoForm.get('marca').touched">
+                                Patente es requerido
+                            </small>
+                        </div>
+                        <div class="field mb-4 col-12 md:col-6">
+                            <label for="modelo" class="font-medium text-900">Modelo</label>
+                            <input id="modelo" type="text" pInputText formControlName="modelo">
+                            <small class="p-error ng-star-inserted"
+                                *ngIf="vehiculoForm.get('modelo').invalid && vehiculoForm.get('modelo').touched">
+                                Patente es requerido
+                            </small>
+                        </div>
+                        <div class="field mb-4 col-12 md:col-6">
+                            <label for="ano" class="font-medium text-900">Año</label>
+                            <input id="ano" type="text" pInputText formControlName="ano">
+                            <small class="p-error ng-star-inserted"
+                                *ngIf="vehiculoForm.get('ano').invalid && vehiculoForm.get('ano').touched">
+                                Patente es requerido
+                            </small>
+                        </div>
+                        <div class="col-12">
+                            <button pButton pRipple label="Guardar Canbios" class="w-auto mt-3" (click)="guardarDatos()"
+                                [disabled]="vehiculoForm.invalid">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </p-dialog>
+</div>
+
+<p-toast></p-toast>
